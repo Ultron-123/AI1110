@@ -1,0 +1,136 @@
+\documentclass[12pt]{article}
+\usepackage{graphicx}
+\usepackage[none]{hyphenat}
+\usepackage[english]{babel}
+\usepackage{caption}
+\usepackage[parfill]{parskip}
+\usepackage{hyperref}
+\usepackage{import}
+\usepackage{booktabs}
+\usepackage{circuit}%%Importing Packing circiut.sty created for circuit
+\def\inputGnumericTable{}
+\usepackage{color}                                            
+    \usepackage{array}                                            
+    \usepackage{longtable}                                        
+    \usepackage{calc}                                             
+    \usepackage{multirow}                                         
+    \usepackage{hhline}                                           
+    \usepackage{ifthen}
+\usepackage{array}
+\usepackage{amsmath}  
+\usepackage{circuitikz}
+\usepackage{parallel,enumitem}
+\usepackage{listings}
+\lstset{
+language=tex,
+frame=single,
+breaklines=true
+}
+ 
+\begin{document}
+	
+	\vspace{3cm}
+	
+	\title{Probability Hardware Assignment}
+	\author{\Large Merugu Balavardhan \\ BT22BTECH11010}
+	\date{}
+
+\maketitle
+
+\begin{abstract}
+	In this assignment we have made a Random number generator using shift registers
+\end{abstract}
+
+%\begin{table}[!h]
+%\centering
+\input{figs/components.tex}
+
+\section*{Procedure}
+\begin{enumerate}[]
+	\item Connect 555 timer acording to the figure \ref{555_t_c}
+	\begin{figure}[h!]
+		\includegraphics[width=7cm, height=6cm]{figs/555.png}
+		\caption{Connection in 555 timer circuit}
+		\label{555_t_c}
+	\end{figure}
+	
+	\item Connect clock signal of D-Flip flops to the Clock output of 555 timer circuit.
+	
+	\item The next step in the process would be to make the circuitary in such a way that shift registers for using a 4 D-Flip flops (using two 7474 IC's)
+	
+	\begin{figure}[h!]
+		\begin{center}
+			
+			\includegraphics[width=11cm, height=6cm]{figs/IC7474.png}
+			\caption{Connection in 7474 IC}
+			\label{7474_IC}
+			
+		\end{center}
+	\end{figure}
+	
+	\item The next connection is XOR gate (7486 IC) according to the figure \ref{XOR} 
+	
+	\begin{figure}
+		\centering
+		\subimport{figs/}
+		{circuit1.tex}
+		\caption{Connection in XOR gate}
+		\label{XOR}
+	\end{figure}
+
+
+
+\item  A,B,C,D of the decoder (7447 IC) is connected with $Q_0$,$Q_1$,$Q_2$,$Q_3$ respectively as per the figure \ref{7447}
+
+\begin{figure}[!h]
+\begin{center}
+\resizebox {\columnwidth} {!} {\input{figs/7447.tex}}
+\end{center}
+\caption{Connection in Decoder gate}
+\label{7447}
+\end{figure}
+
+
+\item Final step is to connect the seven segmented display and then connected it with the dceoder (7447 IC) according to the table \ref{table} and the figure \ref{SSD}
+
+
+\begin{table}[!h]
+	\centering
+	\input{figs/7447_disp.tex}
+	\caption{Connection of seven segmented display with decoder}
+	\label{table}
+\end{table}
+
+\begin{figure}[!h]
+	\begin{center}
+		\resizebox {0.3\columnwidth} {!} {
+			\input{figs/sevenseg.tex}
+		}
+	\end{center}
+	\caption{Seven segmented display}
+	\label{SSD}
+\end{figure}
+
+
+\section*{Output} 
+Output as expected is randomly changing numbers as per the figure \ref{output}
+\begin{figure}[h]
+	\includegraphics[width=\linewidth]{figs/output.jpg}
+	\caption{output}
+	\label{output}
+\end{figure}
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{enumerate}
+\end{document}
